@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/05/19/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+    <title>hexo</title>
+    <url>/2020/05/20/hexo/</url>
+    <content><![CDATA[<h1 id="hexo博客搭建"><a href="#hexo博客搭建" class="headerlink" title="hexo博客搭建"></a>hexo博客搭建</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>前提是安装了<code>Node</code>和 <code>Git</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">hexo init myBlog  <span class="comment">//myBlog即为博客根目录</span></span><br><span class="line">cd myBlog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+<li>参考next主题配置：<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">http://theme-next.iissnan.com/getting-started.html</a></li>
+</ul>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
+<li><p>使用 <code>hexo d</code>部署到github上面时出现错误 <code>ERROR Deployer not found: git</code> ，解决：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment">//再执行下面命令就可以部署到github上面了</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>侧边导航栏图标没有显现，必须在路径的后面加上<strong>||图标名</strong>，图标名就是 <code>menu_icons</code> 键值对右边对应的值</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: /|| home</span><br><span class="line">  archives: /archives|| archive</span><br><span class="line"><span class="meta">  #</span><span class="bash">about: /about</span></span><br><span class="line"><span class="meta">  #</span><span class="bash">categories: /categories</span></span><br><span class="line">  tags: /tags|| tags</span><br><span class="line">  project: /project|| cube</span><br><span class="line"><span class="meta">  #</span><span class="bash">commonweal: /404.html</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Enable/Disable menu icons.</span></span><br><span class="line">menu_icons:</span><br><span class="line">  enable: true</span><br><span class="line">  home: home</span><br><span class="line">  archives: archive</span><br><span class="line">  tags: tags</span><br><span class="line">  project: cube</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Cannot GET /tags/%20/ 这个是点击博客侧边导航栏时报的错误，主要是配置menu时在 <strong>||</strong>后面多加了一个空白符号(虽然是官网按照教程，但是会出现这么一个小问题)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">注意||前面不要留有空白符号</span></span><br><span class="line">menu:</span><br><span class="line">  home: /|| home  </span><br><span class="line">  archives: /archives|| archive</span><br><span class="line"><span class="meta">  #</span><span class="bash">about: /about</span></span><br><span class="line"><span class="meta">  #</span><span class="bash">categories: /categories</span></span><br><span class="line">  tags: /tags|| tags</span><br><span class="line">  project: /project|| cube</span><br><span class="line"><span class="meta">  #</span><span class="bash">commonweal: /404.html</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h3><ul>
+<li><p>创建一篇新文章</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new title</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>该名为title的文章默认会跑到博客目录下<code>source/_posts</code>中,你可以在文章顶部区域(文件最上方以 <code>---</code> 分隔的区域)指定变量，如<code>tags</code>, <code>title</code>, <code>date</code> 等。更多变量：<a href="https://hexo.io/zh-cn/docs/front-matter" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/front-matter</a></p>
+</li>
+</ul>
 ]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
 </search>
