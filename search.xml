@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>跨域</title>
+    <url>/2020/07/04/crossDomain/</url>
+    <content><![CDATA[<h1 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a>跨域解决方案</h1><h3 id="1-vue-cli3设置Proxy跨域"><a href="#1-vue-cli3设置Proxy跨域" class="headerlink" title="1. vue-cli3设置Proxy跨域"></a>1. vue-cli3设置Proxy跨域</h3><p>使用 <strong>proxy</strong>可以实现纯前端解决跨域问题，他可以实现跨域的原因是服务器之间请求数据不会出现跨域问题，可以由代理服务器先与目标服务器进行请求，目标服务器将数据返回给代理服务器，代理服务器又将数据返回给客户端，从而实现了跨域</p>
+<h5 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1 安装"></a>1.1 安装</h5><ul>
+<li>http-proxy-middleware</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install --save-dev http-proxy-middleware</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装axios</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install axios</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-配置vue-config-js"><a href="#1-2-配置vue-config-js" class="headerlink" title="1.2 配置vue.config.js"></a>1.2 配置vue.config.js</h5><ul>
+<li>需要在项目根目录下创建<code>vue.congfig.js</code>文件</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        proxy: &#123;</span><br><span class="line">            <span class="string">'/api'</span>: &#123;</span><br><span class="line">                target: <span class="string">'http://94.191.90.221:8100/mock/46/api'</span>,<span class="comment">//请求数据的服务器的URL</span></span><br><span class="line">                changeOrigin: <span class="literal">true</span>,<span class="comment">// 在本地会创建一个虚拟服务端</span></span><br><span class="line">                ws: <span class="literal">true</span>,</span><br><span class="line">                pathRewrite: &#123; <span class="comment">// 路径重写</span></span><br><span class="line">                    <span class="string">'^/api'</span>: <span class="string">''</span> <span class="comment">// 替换target中的请求地址，所以需要修改axios中的baseURL</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>更多代理服务配置项：<a href="https://github.com/chimurai/http-proxy-middleware" target="_blank" rel="noopener">https://github.com/chimurai/http-proxy-middleware</a></li>
+<li>配置axios的baseURL</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> http = Axios.create(&#123;</span><br><span class="line">    baseURL: <span class="string">"/api"</span>,</span><br><span class="line">    timeout: <span class="number">5000</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
+      <tags>
+        <tag>cross-domain</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo</title>
     <url>/2020/05/20/hexo/</url>
     <content><![CDATA[<h1 id="hexo博客搭建"><a href="#hexo博客搭建" class="headerlink" title="hexo博客搭建"></a>hexo博客搭建</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>前提是安装了<code>Node</code>和 <code>Git</code></p>
@@ -36,35 +68,37 @@
       </tags>
   </entry>
   <entry>
-    <title>跨域</title>
-    <url>/2020/07/04/crossDomain/</url>
-    <content><![CDATA[<h1 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a>跨域解决方案</h1><h3 id="1-vue-cli3设置Proxy跨域"><a href="#1-vue-cli3设置Proxy跨域" class="headerlink" title="1. vue-cli3设置Proxy跨域"></a>1. vue-cli3设置Proxy跨域</h3><p>使用 <strong>proxy</strong>可以实现纯前端解决跨域问题，他可以实现跨域的原因是服务器之间请求数据不会出现跨域问题，可以由代理服务器先与目标服务器进行请求，目标服务器将数据返回给代理服务器，代理服务器又将数据返回给客户端，从而实现了跨域</p>
-<h5 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1 安装"></a>1.1 安装</h5><ul>
-<li>http-proxy-middleware</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install --save-dev http-proxy-middleware</span><br></pre></td></tr></table></figure>
-
+    <title>git</title>
+    <url>/2020/07/31/git/</url>
+    <content><![CDATA[<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h3 id="上传本地项目到Gitee"><a href="#上传本地项目到Gitee" class="headerlink" title="上传本地项目到Gitee"></a>上传本地项目到Gitee</h3><ul>
+<li><p>git init</p>
+</li>
+<li><p>git remote add origin <code>你自己的仓库地址</code>，这里我使用的是 <code>SSH</code></p>
+</li>
+<li><p>git pull origin master：拉取远程分支的内容</p>
 <ul>
-<li>安装axios</li>
+<li><p>要先拉取远程分支的内容才可以将本地仓库的内容推送到远程分支</p>
+</li>
+<li><p>但是这里我在拉取的时候报错：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: refusing to merge unrelated histories</span><br></pre></td></tr></table></figure>
+
+<p>这是由于远程仓库和本地仓库是两个不同的仓库，具有不同的开始提交，也没有共同的 <code>commit</code>，git会认为可能是开发者写错了 <code>origin</code>，所以会给出上述错误提示</p>
+</li>
+<li><p><strong>解决</strong>：<code>git pull origin master --allow-unrelated-histories</code>，这样就可以成功拉取了</p>
+</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install axios</span><br></pre></td></tr></table></figure>
-
-<h5 id="1-2-配置vue-config-js"><a href="#1-2-配置vue-config-js" class="headerlink" title="1.2 配置vue.config.js"></a>1.2 配置vue.config.js</h5><ul>
-<li>需要在项目根目录下创建<code>vue.congfig.js</code>文件</li>
+</li>
+<li><p>git add 文件名</p>
+</li>
+<li><p>git commit -m ‘提交描述’</p>
+</li>
+<li><p>git push -u origin master</p>
+</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        proxy: &#123;</span><br><span class="line">            <span class="string">'/api'</span>: &#123;</span><br><span class="line">                target: <span class="string">'http://94.191.90.221:8100/mock/46/api'</span>,<span class="comment">//请求数据的服务器的URL</span></span><br><span class="line">                changeOrigin: <span class="literal">true</span>,<span class="comment">// 在本地会创建一个虚拟服务端</span></span><br><span class="line">                ws: <span class="literal">true</span>,</span><br><span class="line">                pathRewrite: &#123; <span class="comment">// 路径重写</span></span><br><span class="line">                    <span class="string">'^/api'</span>: <span class="string">''</span> <span class="comment">// 替换target中的请求地址，所以需要修改axios中的baseURL</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>更多代理服务配置项：<a href="https://github.com/chimurai/http-proxy-middleware" target="_blank" rel="noopener">https://github.com/chimurai/http-proxy-middleware</a></li>
-<li>配置axios的baseURL</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> http = Axios.create(&#123;</span><br><span class="line">    baseURL: <span class="string">"/api"</span>,</span><br><span class="line">    timeout: <span class="number">5000</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
+<p>这样项目就可以上传成功啦~</p>
+]]></content>
       <tags>
-        <tag>cross-domain</tag>
+        <tag>git</tag>
       </tags>
   </entry>
 </search>
