@@ -101,4 +101,37 @@
         <tag>git</tag>
       </tags>
   </entry>
+  <entry>
+    <title>sequelize</title>
+    <url>/2021/05/08/sequelize/</url>
+    <content><![CDATA[<h1 id="sequelize"><a href="#sequelize" class="headerlink" title="sequelize"></a>sequelize</h1><h3 id="sequelize关联"><a href="#sequelize关联" class="headerlink" title="sequelize关联"></a>sequelize关联</h3><h4 id="关联建立"><a href="#关联建立" class="headerlink" title="关联建立"></a>关联建立</h4><p><a href="https://www.sequelize.com.cn/core-concepts/assocs" target="_blank" rel="noopener">详见</a></p>
+<p><code>sequelize</code>提供了四种关联关系，他们均可以将目标模型作为参数传入，建立对应关系</p>
+<ul>
+<li><p><code>HasOne</code> 关联类型：与目标模型建立1:1关联关系，外键存在于目标模型中</p>
+</li>
+<li><p><code>BelongsTo</code> 关联类型：与目标模型建立1:1关联关系，外键存在于源模型中</p>
+</li>
+<li><p><code>HasMany</code> 关联类型：与目标模型建立1:N关联关系，外键存在于目标模型中</p>
+</li>
+<li><p><code>BelongsToMany</code> 关联类型：与目标模型建立M:N关联关系，通过<code>sourceId</code>和<code>targetId</code>创建交叉表</p>
+</li>
+<li><pre><code class="javascript">A.hasOne(B) <span class="comment">//A,B为一对一关系，外键存储在目标模型B中</span>
+A.belongsTo(B) <span class="comment">//A,B存在一对一关系，外键存储在源模型A中</span>
+A.hasMany(B) <span class="comment">//A,B存在一对多关系，外键存储在目标模型B中</span>
+A.belongsToMany(B. {<span class="attr">through</span>: <span class="string">'C'</span>}) <span class="comment">// A,B多对多关系，C作为联结表，具有外键aId, bId</span>
+&lt;!--￼<span class="number">0</span>--&gt;
+</code></pre>
+</li>
+</ul>
+<h5 id="预先加载过滤"><a href="#预先加载过滤" class="headerlink" title="预先加载过滤"></a>预先加载过滤</h5><p>使用 <code>where</code>进行模型的数据过滤</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">User.findAll(&#123;</span><br><span class="line">  include: &#123;</span><br><span class="line">    model: Task,</span><br><span class="line">    <span class="keyword">as</span>: <span class="string">'aliasTask'</span> <span class="comment">// 别名</span></span><br><span class="line">    where: &#123;</span><br><span class="line">      name: &#123;</span><br><span class="line">        [Op.like]: <span class="string">'%coding%'</span> <span class="comment">// 查询到的task数据只有name字段包含coding的才会被返回结果</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="多次预先加载"><a href="#多次预先加载" class="headerlink" title="多次预先加载"></a>多次预先加载</h5><p><code>include</code>允许传入一个数组</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Foo.findAll(&#123;</span><br><span class="line">  include: [</span><br><span class="line">    &#123;</span><br><span class="line">      model: Bar,</span><br><span class="line">      required: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      model: Baz,</span><br><span class="line">      where: <span class="comment">/* ... */</span></span><br><span class="line">    &#125;,</span><br><span class="line">    Qux <span class="comment">// &#123; model: Qux &#125; 的简写语法在这里也适用</span></span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>sequelize</tag>
+      </tags>
+  </entry>
 </search>
